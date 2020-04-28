@@ -8,8 +8,8 @@ theStack ENDS
 data SEGMENT USE16
 
 result db 11 DUP(?)
-prompt1 db "Enter first number (-32768..32767): ", '$'
-prompt2 db "Enter second number (-32768..32767): ", '$'
+prompt1 db "Enter the first number (-32768..32767): ", '$'
+prompt2 db "Enter the second number (-32768..32767): ", '$'
 maxlen1 db 7
 num1_len db 0
 num1 db 7 DUP(?)
@@ -133,7 +133,7 @@ str_to_int:
   jmp .loop
 .end_loop:
 
-  ; Negate number if negative number flag is set
+  ; Negate number if the negative number flag is set
   test esi, esi
   je .finish
   neg eax
@@ -153,12 +153,12 @@ start:
   mov ds, ax
   mov es, ax
 
-  ; Print first prompt
+  ; Print the first prompt
   mov ah, 09h
   mov dx, OFFSET prompt1
   int 21h
 
-  ; Read first number
+  ; Read the first number
   mov ah, 0ah
   mov dx, OFFSET maxlen1
   int 21h
@@ -171,12 +171,12 @@ start:
   mov si, ax
   mov num1+si, '$'
 
-  ; Print second prompt
+  ; Print the second prompt
   mov ah, 09h
   mov dx, OFFSET prompt2
   int 21h
 
-  ; Read second number
+  ; Read the second number
   mov ah, 0ah
   mov dx, OFFSET maxlen2
   int 21h
@@ -189,12 +189,12 @@ start:
   mov si, ax
   mov num2+si, '$'
 
-  ; Convert first number to int
+  ; Convert the first number to int
   mov al, OFFSET num1
   call str_to_int
   mov ebx, eax
 
-  ; Convert second number to int
+  ; Convert the second number to int
   mov al, OFFSET num2
   call str_to_int
 
@@ -205,7 +205,7 @@ start:
   call int_to_str
   mov ebx, eax
 
-  ; Print first number
+  ; Print the first number
   mov ah, 09h
   mov dx, OFFSET num1
   int 21h
@@ -215,7 +215,7 @@ start:
   mov dx, OFFSET plus_sign
   int 21h
 
-  ; Print second number
+  ; Print the second number
   mov ah, 09h
   mov dx, OFFSET num2
   int 21h
